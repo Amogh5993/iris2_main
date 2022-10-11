@@ -1,19 +1,19 @@
-FROM ubuntu:16.04
+FROM ubuntu
 
-FROM python:3.10.5
+FROM python
 
 RUN apt-get update -y && \
     apt-get install -y python-pip python-dev
 
 # We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /App/requirements.txt
 
-WORKDIR /app
+WORKDIR /App
 
 RUN pip install -r requirements.txt
 
-COPY . /app
+COPY . /App
 
-CMD python /app/model.py && python /app/server.py
+CMD python /App/model.py && python /App/server.py
 
  
